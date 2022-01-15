@@ -2,6 +2,7 @@
 from numpy import *
 import pandas as pd
 import tkinter as tk
+from PIL import Image, ImageTk
 
 # Dye dictionaries
 
@@ -166,24 +167,51 @@ def calculate_dol():
 root = tk.Tk()
 
 root.columnconfigure(0, weight=1, minsize=150)
+root.title('Sam')
+root.resizable(False, False)
+root.iconbitmap('SlothLogo_trimmed.ico')
 
 ##################################  First frame  ##################################
 
-logo_frame = tk.Frame(master=root, borderwidth=1, padx=5, pady=5)
-logo_frame.grid(row=0, column=0, sticky='w')
+logo_frame = tk.Frame(master=root, borderwidth=3, padx=5, pady=5, background='#ffcc00', relief=tk.RIDGE, width=200)
+logo_frame.grid(row=0, column=0)
 
-logo = tk.Label(
-        text=" Esteban's protein labeling magic tool ",
-        fg='white',
-        bg='#505050',
-        width=67,
+spacer_lbl1 = tk.Label(
+        text='',
+        bg='#ffcc00',
+        width=19,
+        height=2,
+        master=logo_frame
+)
+spacer_lbl1.grid(row=0, column=0)
+
+logo = Image.open('SlothLogo_trimmed.ico')
+logo = logo.resize((35, 35))
+logo = ImageTk.PhotoImage(logo)
+logo_label = tk.Label(image=logo, master=logo_frame, background='#ffcc00')
+logo_label.image = logo
+logo_label.grid(row=0, column=1)
+
+app_name = tk.Label(
+        text="The protein labeling wizard",
+        fg='#331a00',
+        bg='#ffcc00',
+        width=21,
         height=2,
         master=logo_frame,
-        relief=tk.RIDGE,
         borderwidth=2
 )
 
-logo.pack()
+app_name.grid(row=0, column=2)
+
+spacer_lbl2 = tk.Label(
+        text='',
+        bg='#ffcc00',
+        width=19,
+        height=2,
+        master=logo_frame
+)
+spacer_lbl2.grid(row=0, column=3)
 
 ##################################  First frame (dye selection and antibody default parameters)  ##################################
 
@@ -219,7 +247,7 @@ frame_two.grid(row=2, column=0, sticky='w')
 absorbance_280_lbl = tk.Label(
         master=frame_two,
         text='Absorbance 280 nm',
-        bg='#4682B4',
+        bg='#331a00',
         fg='white',
         borderwidth=2,
         width=24,
@@ -246,7 +274,7 @@ spacer_frame_two.grid(row=0, column=2)
 absorbance_dye_lbl = tk.Label(
         master=frame_two,
         text='Absorbance dye lambda max',
-        bg='#4682B4',
+        bg='#331a00',
         fg='white',
         borderwidth=2,
         width=24,
@@ -285,7 +313,7 @@ frame_four.grid(row=5, column=0)
 protein_mw_lbl = tk.Label(
         master=frame_four,
         text='Protein MW (da)',
-        bg='#4682B4',
+        bg='#331a00',
         fg='white',
         borderwidth=2,
         width=24,
@@ -312,7 +340,7 @@ spacer_frame_four.grid(row=0, column=2)
 protein_ext_coeff_lbl = tk.Label(
         master=frame_four,
         text='Protein molar ext. coeff.',
-        bg='#4682B4',
+        bg='#331a00',
         fg='white',
         borderwidth=2,
         width=24,
@@ -341,17 +369,18 @@ frame_six = tk.Frame(master=root, borderwidth=1, padx=5, pady=5)
 frame_six.grid(row=7, column=0)
 
 calculate_btn = tk.Button(
-        text='Calculate DOL and protein concentration',
-        width=35,
+        text='Ask Sam',
+        width=8,
         height=1,
-        bg='#505050',
-        fg='white',
+        bg='#ffcc00',
+        fg='#331a00',
         master=frame_six,
         relief=tk.RAISED,
         borderwidth=2,
-        command=calculate_dol
+        command=calculate_dol,
 )
 calculate_btn.grid(row=0, column=0)
+
 
 ##################################  Main loop  ##################################
 
