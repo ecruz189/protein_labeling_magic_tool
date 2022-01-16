@@ -183,7 +183,7 @@ def calculate_dol():
             if adjusted_conc > prot_conc_mgmL:
                 adjustment_advise = "You'll have to concentrate your protein   {:.2f}   times if you'd like to administer 50 µL per mouse".format(adjustment_factor)
             elif adjusted_conc < prot_conc_mgmL:
-                adjustment_advise = "You'll have to dilute your protein   {:.2f}   times if you'd like to administer 50 µL per mouse".format(adjustment_factor)
+                adjustment_advise = "You'll have to dilute your protein   {:.2f}   times if you'd like to administer 50 µL per mouse".format(1/adjustment_factor)
 
             dose_frame = tk.Frame(borderwidth=2, master=window_two, padx=5, pady=5, bg='white', relief=tk.RIDGE)
             dose_frame.grid(row=1, column=0, columnspan=3)
